@@ -7,7 +7,6 @@ import CollegeProject.Exception.ResourceNotFoundException;
 import CollegeProject.Models.Customer_Model;
 import CollegeProject.Repositories.CustomerRepository;
 import org.modelmapper.ModelMapper;
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +14,6 @@ import java.util.ArrayList;
 
 @Service
 public class CustomerServiceImpl implements  CustomerService{
-
-    private static final Logger logger = null;
-
     @Autowired
     private CustomerRepository customerRepository;
 
