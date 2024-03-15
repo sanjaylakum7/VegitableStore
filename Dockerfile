@@ -42,22 +42,18 @@ RUN mvn clean package -DskipTests
 
 # Stage 2: Create the final image
 FROM openjdk:17.0.2-jdk-slim
-COPY --from=build /target/vegitable-store.jar vegitable-store.jar
 
-# Update package repositories and install necessary packages
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-    gnupg \
-    mysql-client \
-    && rm -rf /var/lib/apt/lists/*
+# Copy the built JAR file from the build stage
+COPY --from=build /target/vegitable-store.jar app.jar
 
-# Expose the port your application runs on
+# Expose the application port
 EXPOSE 8888
 
-# Define environment variables for MySQL connection
-ENV SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/collage \
-    SPRING_DATASOURCE_USERNAME=root \
-    SPRING_DATASOURCE_PASSWORD=sanjaylakum
+# Set environment variables for MySQL configuration (to be provided externally)
+ENV SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/collage
+ENV SPRING_DATASOURCE_USERNAME=root
+ENV SPRING_DATASOURCE_PASSWORD=sanjaylakum
 
 # Run the Spring Boot application
-ENTRYPOINT ["java", "-jar", "vegitable-store.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
+
