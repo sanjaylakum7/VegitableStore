@@ -10,13 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("apis/")
 public class CartController {
 
     @Autowired
     private CartService cartService;
 
-    @GetMapping("public/customer/{customer_id}/product/{product_id}")
+    @GetMapping("customer/{customer_id}/product/{product_id}")
     public ResponseEntity<String> addProductToCart(@PathVariable("customer_id") Integer customer_id, @PathVariable("product_id") Integer product_id){
         return new ResponseEntity<>(cartService.addProductToCart(customer_id, product_id), HttpStatus.OK);
     }

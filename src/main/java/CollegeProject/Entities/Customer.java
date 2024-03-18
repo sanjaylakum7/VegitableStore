@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     private String firstname;
@@ -26,7 +26,7 @@ public class Customer {
     @Column(unique = true)
     private String password;
 
-    private boolean isLogin = false;
+    private String role = "PUBLIC";
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Address> address;

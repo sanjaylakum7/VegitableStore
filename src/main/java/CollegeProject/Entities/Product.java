@@ -2,7 +2,7 @@ package CollegeProject.Entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,8 +18,8 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @Lob
-    private Byte[] images;
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> images;
 
     @Column(unique = true)
     private String name;
@@ -33,5 +33,4 @@ public class Product {
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Cart cart;
-
 }

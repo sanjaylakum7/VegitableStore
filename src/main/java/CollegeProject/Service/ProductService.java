@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 public interface ProductService {
-    public Product_Model addNewProduct(Product product, int categoryId);
+    public Product_Model addNewProduct(Product product, int categoryId) throws IOException;
 
     public List<Product_Model> getProductByCategoryId(Integer category_id);
 

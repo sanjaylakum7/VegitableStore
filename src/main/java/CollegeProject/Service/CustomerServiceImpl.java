@@ -16,9 +16,9 @@ import java.util.ArrayList;
 public class CustomerServiceImpl implements  CustomerService{
     @Autowired
     private CustomerRepository customerRepository;
-
     @Autowired
     private ModelMapper modelMapper;
+
 
     @Override
     public Customer_Model registerCustomer(Customer customer) {

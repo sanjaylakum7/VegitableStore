@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Product_Model {
     private Long id;
-    private MultipartFile images;
+    private List<String> images;
     private String name;
     private int price;
     private String description;
