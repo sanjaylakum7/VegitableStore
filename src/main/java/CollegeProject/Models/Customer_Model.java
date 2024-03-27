@@ -9,10 +9,9 @@ import java.util.List;
 public class Customer_Model {
     private Integer id;
     private String firstname;
-    private String lastname;
     private String emailId;
-    private boolean isLogin;
     private String phoneNo;
+    private String gender;
     private String password;
     private List<Address_Model> address;
 }

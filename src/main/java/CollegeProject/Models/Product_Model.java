@@ -1,8 +1,6 @@
 package CollegeProject.Models;
 
-import CollegeProject.Entities.Category;
 import lombok.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -11,7 +9,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Product_Model {
     private Long id;
-    private List<String> images;
+    private String images;
     private String name;
     private int price;
     private String description;

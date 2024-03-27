@@ -2,7 +2,6 @@ package CollegeProject.Entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,12 +13,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "category_id")
-    private Category category;
-
-    @ElementCollection(fetch = FetchType.EAGER)
-    private List<String> images;
+    private String images;
 
     @Column(unique = true)
     private String name;

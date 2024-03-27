@@ -14,19 +14,15 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    private String firstname;
-    private String lastname;
+    private String name;
 
-    @Column(unique = true)
     private String emailId;
 
-    @Column(unique = true)
     private String phoneNo;
 
-    @Column(unique = true)
-    private String password;
+    private String gender;
 
-    private String role = "PUBLIC";
+    private String password;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Address> address;

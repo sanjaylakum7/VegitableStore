@@ -8,7 +8,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
+@CrossOrigin(origins = "http://localhost:5177")
 public class CustomerController {
 
     @Autowired
@@ -39,5 +42,11 @@ public class CustomerController {
     @GetMapping("customer/{customer_id}/delete")
     public ResponseEntity<String> deleteCustomer(@PathVariable("customer_id") Integer customerid){
         return new ResponseEntity<>(customerService.deleteCustomer(customerid), HttpStatus.OK);
+    }
+
+    // GEt All Customer From the Db
+    @GetMapping("customers")
+    public ResponseEntity<List<Customer_Model>> getAllCustomer(){
+        return new ResponseEntity<>(customerService.getAllCustomer(), HttpStatus.OK);
     }
 }

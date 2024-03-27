@@ -16,7 +16,6 @@ public class CollegeProjectApplication extends SpringBootServletInitializer{
 
 //	i have t extend the class with that class -> extends SpringBootServletInitializer
 
-
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
 		return builder.sources(CollegeProjectApplication.class);

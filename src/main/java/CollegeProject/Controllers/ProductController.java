@@ -13,22 +13,26 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequestMapping("admin/")
 public class ProductController {
 
     @Autowired
     private ProductService productService;
 
     // create a product
-    @PostMapping("category/{category_id}/product")
-    public ResponseEntity<Product_Model> createNewProduct(@RequestBody Product product,
-                                                          @PathVariable("category_id") int category_id) throws IOException {
-        return new ResponseEntity<>(productService.addNewProduct(product, category_id), HttpStatus.CREATED);
+    @PostMapping("product")
+    public ResponseEntity<Product_Model> createNewProduct(@RequestParam("images") MultipartFile file,
+                                                          @RequestParam("name") String name,
+                                                          @RequestParam("price") int price,
+                                                          @RequestParam("description") String description,
+                                                          @RequestParam("store_name") String store_name
+                                                          ) throws IOException {
+        return new ResponseEntity<>(productService.addNewProduct(file, name, price, description, store_name),
+                HttpStatus.CREATED);
     }
 
     // get Product by category
-    @GetMapping("category/{category_id}/product")
-    public ResponseEntity<List<Product_Model>> getProductByCategory(@PathVariable("category_id") Integer category_id) {
-        return new ResponseEntity<>(productService.getProductByCategoryId(category_id), HttpStatus.OK);
+    @GetMapping("products")
+    public ResponseEntity<List<Product_Model>> getAllProducts() {
+        return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
     }
 }

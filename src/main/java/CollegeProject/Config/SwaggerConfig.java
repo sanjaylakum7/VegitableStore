@@ -14,11 +14,12 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI springShopOpenAPI() {
         return new OpenAPI().info(new Info().title("E-Commerce Application")
-                        .description("Backend APIs for E-Commerce app")
+                        .description("Backend APIs for Vegitable Store")
                         .version("v1.0.0")
-                        .contact(new Contact().name("Shaik Sirajuddin").url("https://sirajuddin135.github.io/").email("shaiksirajuddin135@gmail.com"))
+                        .contact(new Contact().name("Sanjay Lakum").email(
+                                "rockystar40034@gmail.com"))
                         .license(new License().name("License").url("/")))
-                        .externalDocs(new ExternalDocumentation().description("E-Commerce App Documentation")
+                        .externalDocs(new ExternalDocumentation().description("Vegitable Store App Documentation")
                         .url("http://localhost:8080/swagger-ui/index.html"));
     }
 }

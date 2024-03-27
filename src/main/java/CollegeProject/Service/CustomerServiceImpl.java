@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CustomerServiceImpl implements  CustomerService{
@@ -32,8 +34,8 @@ public class CustomerServiceImpl implements  CustomerService{
     public Customer_Model updateCustomerDetails(Customer customer, Integer customerId) {
         Customer existCustomer = customerRepository.findById(customerId).orElseThrow(() -> new ResourceNotFoundException());
 
-        existCustomer.setLastname(customer.getLastname());
-        existCustomer.setFirstname(customer.getFirstname());
+        existCustomer.setGender(customer.getGender());
+        existCustomer.setName(customer.getName());
         existCustomer.setPhoneNo(customer.getPhoneNo());
         existCustomer.setEmailId(customer.getEmailId());
 
@@ -54,4 +56,18 @@ public class CustomerServiceImpl implements  CustomerService{
         return "Customer successfully deleted !!";
     }
 
+    @Override
+    public Boolean login(String emailId, String password) {
+        Customer customer = customerRepository.findByEmailId(emailId);
+        System.out.println(customer);
+        System.out.println(emailId + " " + password);
+        if (customer != null && customer.getEmailId() == emailId && customer.getPassword() == password) return true;
+        return false;
+    }
+
+    @Override
+    public List<Customer_Model> getAllCustomer() {
+        List<Customer> customerList  = customerRepository.findAll();
+        return customerList.stream().map(customer -> modelMapper.map(customer, Customer_Model.class)).collect(Collectors.toList());
+    }
 }

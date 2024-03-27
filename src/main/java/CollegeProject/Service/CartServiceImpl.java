@@ -4,9 +4,11 @@ import CollegeProject.Entities.Cart;
 import CollegeProject.Entities.Customer;
 import CollegeProject.Entities.Product;
 import CollegeProject.Exception.ResourceNotFoundException;
+import CollegeProject.Models.Cart_Model;
 import CollegeProject.Repositories.CartRepository;
 import CollegeProject.Repositories.CustomerRepository;
 import CollegeProject.Repositories.ProductRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -20,6 +22,9 @@ public class CartServiceImpl implements CartService{
     private ProductRepository productRepository;
     @Autowired
     private CustomerRepository customerRepository;
+    @Autowired
+    private ModelMapper modelMapper;
+
     @Override
     public String addProductToCart(Integer customer_id, Integer product_id) {
         Product product = productRepository.findById(product_id).orElseThrow(() -> new ResourceNotFoundException());
@@ -32,5 +37,11 @@ public class CartServiceImpl implements CartService{
         cart.setCustomer(customer);
         cartRepository.save(cart);
         return "Product Added !!";
+    }
+
+    @Override
+    public Cart_Model getAllProductFromCart(Integer cartId) {
+        Cart cart = cartRepository.findById(cartId).orElseThrow();
+        return modelMapper.map(cart, Cart_Model.class);
     }
 }
